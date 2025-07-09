@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useScroll, motion, useTransform } from 'motion-v'
 import Header from '@/components/Header.vue'
+import Footer from '@/components/Footer.vue'
 import { useRoute } from 'vue-router'
 
 const MotionDiv = motion.create('div')
@@ -17,6 +18,7 @@ const route = useRoute()
     <Header v-if="!route.meta.hideHeader" />
     <!-- App Content -->
     <RouterView />
+    <Footer v-if="!route.meta.hideFooter" />
   </div>
 </template>
 

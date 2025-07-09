@@ -6,7 +6,6 @@ import TrendingArtistsGrid from '@/components/TrendingArtistsGrid.vue'
 import ReviewCards from '@/components/ReviewCards.vue'
 import TitleBanner from '@/components/TitleBanner.vue'
 import WelcomeSection from '@/components/WelcomeSection.vue'
-import Footer from '@/components/Footer.vue'
 </script>
 
 <template>
@@ -27,7 +26,6 @@ import Footer from '@/components/Footer.vue'
                 <TitleBanner>Providers</TitleBanner>
                 <ProviderBanner />
             </main>
-            <Footer />
         </div>
     </div>
 </template>

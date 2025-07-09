@@ -23,9 +23,11 @@ function toggleSearch() {
 <template>
     <header class="grid grid-cols-12 items-center px-6 py-3 bg-background/90 backdrop-blur gap-4">
         <!-- Logo -->
-        <div class="col-span-4 flex items-center gap-2 text-xl font-semibold">
-            <Clapperboard class="w-6 h-6 text-primary" />
-            <span>Binged!</span>
+        <div class="col-span-4 flex items-center ">
+            <a href="/" class="flex gap-2 text-xl font-semibold">
+                <Clapperboard class="w-6 h-6 text-primary" />
+                <span>Binged!</span>
+            </a>
 
         </div>
 
