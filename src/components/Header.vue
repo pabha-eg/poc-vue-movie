@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import {
     NavigationMenu,
@@ -9,7 +8,8 @@ import {
     NavigationMenuLink,
     NavigationMenuList,
 } from '@/components/ui/navigation-menu'
-import { LogIn, UserPlus, Clapperboard, Search } from 'lucide-vue-next'
+import { Clapperboard, Search } from 'lucide-vue-next'
+import ThemeToggle from './ThemeToggle.vue'
 
 const showSearch = ref(false)
 const searchQuery = ref('')
@@ -26,6 +26,7 @@ function toggleSearch() {
         <div class="col-span-4 flex items-center gap-2 text-xl font-semibold">
             <Clapperboard class="w-6 h-6 text-primary" />
             <span>Binged!</span>
+
         </div>
 
         <!-- Navigation -->
@@ -63,20 +64,13 @@ function toggleSearch() {
         <div class="col-span-4 flex items-center justify-end gap-2">
 
             <!-- Search -->
-            <div class="flex items-center relative h-8">
+            <div class="flex items-center relative h-7">
                 <Search class="absolute left-2 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                <Input v-model="searchQuery" type="text" placeholder="Search movies, TV shows..."
-                    class="pl-8 pr-2 h-8 border border-input focus:border-transparent focus:ring-0 focus:outline-none transition-colors duration-200" />
+                <Input v-model="searchQuery" type="text" placeholder="Search..."
+                    class="pl-8 pr-2 h-7 border border-input focus:border-transparent focus:ring-0 focus:outline-none transition-colors duration-200" />
             </div>
 
-
-            <!-- Login/Signup -->
-            <Button variant="ghost" size="sm" @click="router.push('/signin')">
-                <LogIn class="w-4 h-4 mr-1" /> Login
-            </Button>
-            <Button variant="default" size="sm" @click="router.push('/signup')">
-                <UserPlus class="w-4 h-4 mr-1" /> Sign Up
-            </Button>
+            <ThemeToggle />
         </div>
     </header>
 </template>
