@@ -12,7 +12,7 @@ const { artists, loading, error } = useTrendingArtists()
 
         <div v-else class="grid grid-cols-3 sm:grid-cols-5 gap-4">
             <div v-for="artist in artists" :key="artist.id" class="flex flex-col items-center">
-                <div class="w-full aspect-5/6 bg-muted overflow-hidden rounded shadow">
+                <div class="w-full aspect-5/6 bg-muted overflow-hidden shadow">
                     <img v-if="artist.profile_path" :src="`https://image.tmdb.org/t/p/w342${artist.profile_path}`"
                         :alt="artist.name" class="w-full h-full object-cover" />
                     <div v-else

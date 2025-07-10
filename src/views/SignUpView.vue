@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import { toast } from 'vue-sonner'
 import { useRouter } from 'vue-router'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -9,9 +10,10 @@ import {
     CardDescription,
     CardFooter,
     CardHeader,
-    CardTitle,
+    CardTitle
 } from '@/components/ui/card'
-import { Label } from '@/components/ui/label'
+import ParticleMotion from '@/components/animation/ParticleMotion.vue'
+
 
 const name = ref('')
 const username = ref('')
@@ -41,27 +43,39 @@ async function handleSignUp() {
     success.value = ''
 
     if (!validate()) return
+
+    toast('Almost there!', {
+        description: 'We’re still setting things up. Stay tuned ✨',
+    })
 }
 </script>
 
 <template>
-    <div class="p-4 max-w-md mx-auto">
-        <Card>
+    <ParticleMotion />
+    <div class="flex justify-center items-center min-h-screen px-4">
+        <Card class="w-full max-w-md shadow-lg rounded-none bg-transparent">
             <CardHeader>
-                <CardTitle>Sign Up</CardTitle>
-                <CardDescription>Create a new account to continue.</CardDescription>
+                <CardTitle class="text-2xl">Create Account</CardTitle>
+                <CardDescription>Join Binged! and start tracking your movies.</CardDescription>
             </CardHeader>
 
             <CardContent>
-                <Label v-if="error" class="text-red-500 mb-2">{{ error }}</Label>
-                <Label v-if="success" class="text-green-600 mb-2">{{ success }}</Label>
-
                 <form @submit.prevent="handleSignUp" class="space-y-4">
-                    <Input v-model.trim="name" type="text" placeholder="Full Name" />
-                    <Input v-model.trim="username" type="text" placeholder="Username" />
-                    <Input v-model.trim="password" type="password" placeholder="Password" />
-                    <CardFooter class="p-0">
-                        <Button type="submit" variant="default" class="w-full">Sign Up</Button>
+                    <div>
+                        <Input v-model.trim="name" type="text" placeholder="Full Name" />
+                    </div>
+                    <div>
+                        <Input v-model.trim="username" type="text" placeholder="Username" />
+                    </div>
+                    <div>
+                        <Input v-model.trim="password" type="password" placeholder="Password" />
+                    </div>
+
+                    <div v-if="error" class="text-sm text-red-500">{{ error }}</div>
+                    <div v-if="success" class="text-sm text-green-600">{{ success }}</div>
+
+                    <CardFooter class="p-0 pt-2">
+                        <Button type="submit" variant="secondary" class="w-full">Sign Up</Button>
                     </CardFooter>
                 </form>
             </CardContent>

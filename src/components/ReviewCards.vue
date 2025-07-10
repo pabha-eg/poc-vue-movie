@@ -16,13 +16,13 @@ const { reviews, loading, error } = useTrendingReviews()
         <div v-if="loading" class="text-muted-foreground">Loading...</div>
         <div v-else-if="error" class="text-destructive">{{ error }}</div>
         <div v-else class="grid grid-cols-2 gap-6">
-            <Card v-for="review in reviews" :key="review.id" class="flex overflow-hidden bg-transparent">
+            <Card v-for="review in reviews" :key="review.id" class="flex overflow-hidden bg-transparent rounded-none">
                 <!-- 3-column layout within card -->
                 <div class="grid grid-cols-3 w-full">
                     <!-- Column 1: Poster -->
                     <div class="col-span-1 p-2">
                         <img v-if="review.poster_path" :src="`https://image.tmdb.org/t/p/w154${review.poster_path}`"
-                            :alt="review.title" class="w-full h-40 object-contain rounded" />
+                            :alt="review.title" class="w-full h-40 object-contain" />
                     </div>
                     <!-- Columns 2-3: Review Details -->
                     <div class="col-span-2 p-2">

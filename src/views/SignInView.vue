@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { toast } from 'vue-sonner'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import {
@@ -9,15 +10,14 @@ import {
     CardDescription,
     CardFooter,
     CardHeader,
-    CardTitle,
+    CardTitle
 } from '@/components/ui/card'
-import { Label } from '@/components/ui/label'
+import ParticleMotion from '@/components/animation/ParticleMotion.vue'
 
 const username = ref('')
 const password = ref('')
 const error = ref('')
 const router = useRouter()
-
 
 function validate() {
     if (!username.value || !password.value) {
@@ -40,25 +40,29 @@ async function handleSignIn() {
 
     if (!validate()) return
 
+    toast('Hang tight!', {
+        description: 'Authentication system is still under construction 🚧',
+    })
 }
 </script>
 
 <template>
-    <div class="p-4 max-w-md mx-auto">
-        <Card>
+    <ParticleMotion />
+    <div class="flex justify-center items-center min-h-screen px-4">
+        <Card class="w-full max-w-md shadow-lg rounded-none bg-transparent">
             <CardHeader>
-                <CardTitle>Sign In</CardTitle>
-                <CardDescription>Welcome back! Please enter your credentials.</CardDescription>
+                <CardTitle class="text-2xl">Sign In</CardTitle>
+                <CardDescription>Welcome back! Enter your credentials to continue.</CardDescription>
             </CardHeader>
 
             <CardContent>
-                <Label v-if="error" class="text-red-500 mb-2">{{ error }}</Label>
-
                 <form @submit.prevent="handleSignIn" class="space-y-4">
                     <Input v-model.trim="username" type="text" placeholder="Username" />
                     <Input v-model.trim="password" type="password" placeholder="Password" />
-                    <CardFooter class="p-0">
-                        <Button type="submit" variant="default" class="w-full">Sign In</Button>
+                    <div v-if="error" class="text-sm text-red-500">{{ error }}</div>
+
+                    <CardFooter class="p-0 pt-2">
+                        <Button type="submit" variant="secondary" class="w-full">Login</Button>
                     </CardFooter>
                 </form>
             </CardContent>

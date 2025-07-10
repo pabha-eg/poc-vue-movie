@@ -23,7 +23,7 @@ defineEmits<{
             loop: true
         }">
             <CarouselContent class="-ml-1">
-                <CarouselItem v-for="item in items" :key="item.id" class="pl-1 basis-1/5">
+                <CarouselItem v-for="item in items" :key="item.id" class="pl-1 basis-1/3 sm:basis-1/4 md:basis-1/5">
                     <div class="p-1">
                         <Card class="cursor-pointer border-none bg-transparent" @click="$emit('item-click', item)">
                             <CardContent class="flex aspect-[3/4] items-center justify-center p-0">
