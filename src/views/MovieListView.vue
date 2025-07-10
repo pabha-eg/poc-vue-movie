@@ -3,11 +3,18 @@ import PosterCarousel from '@/components/PosterCarousel.vue'
 import ParticleMotion from '@/components/animation/ParticleMotion.vue'
 import { useTmdbMovieSections } from '@/composables/useTmdbMovieSections'
 import type { TmdbItem } from '@/types/tmdb'
+import ItemShowcase from '@/components/ItemShowcase.vue'
+import { ref } from 'vue'
 
 const { nowPlaying, popular, topRated, upcoming } = useTmdbMovieSections()
+const selectedItem = ref<TmdbItem | null>(null)
 
 function showItem(item: TmdbItem) {
-    console.log('Selected:', item)
+    selectedItem.value = item
+}
+
+function closeShowcase() {
+    selectedItem.value = null
 }
 </script>
 
@@ -25,6 +32,8 @@ function showItem(item: TmdbItem) {
                 <PosterCarousel :items="popular" sectionTitle="Popular" @item-click="showItem" />
             </main>
         </div>
+        <!-- Modal -->
+        <ItemShowcase :item="selectedItem" @close="closeShowcase" />
     </div>
 </template>
 

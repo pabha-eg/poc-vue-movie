@@ -1,14 +1,20 @@
 <script setup lang="ts">
 import PosterCarousel from '@/components/PosterCarousel.vue'
 import ParticleMotion from '@/components/animation/ParticleMotion.vue'
-import Footer from '@/components/Footer.vue'
 import { useTmdbTvSections } from '@/composables/useTmdbTvSections'
 import type { TmdbItem } from '@/types/tmdb'
+import ItemShowcase from '@/components/ItemShowcase.vue'
+import { ref } from 'vue'
 
 const { airingToday, onTheAir, popular, topRated } = useTmdbTvSections()
+const selectedItem = ref<TmdbItem | null>(null)
 
 function showItem(item: TmdbItem) {
-    console.log('Selected TV Show:', item)
+    selectedItem.value = item
+}
+
+function closeShowcase() {
+    selectedItem.value = null
 }
 </script>
 
@@ -26,6 +32,8 @@ function showItem(item: TmdbItem) {
                 <PosterCarousel :items="onTheAir" sectionTitle="On The Air" @item-click="showItem" />
             </main>
         </div>
+        <!-- Modal -->
+        <ItemShowcase :item="selectedItem" @close="closeShowcase" />
     </div>
 </template>
 
