@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { motion } from 'motion-v'
 import { useWatchProviders } from '@/composables/useWatchProviders'
+import LoadingIndicator from './ui/LoadingIndicator.vue'
 
 const MotionDiv = motion.create('div')
 const { leftProviders, rightProviders, loading } = useWatchProviders()
@@ -8,6 +9,8 @@ const { leftProviders, rightProviders, loading } = useWatchProviders()
 
 <template>
     <div class="space-y-4 w-full overflow-hidden py-4">
+        <!-- Loading State -->
+        <LoadingIndicator v-if="loading" />
         <!-- Marquee Left -->
         <div class="flex whitespace-nowrap animate-marquee-left space-x-6">
             <MotionDiv v-for="provider in leftProviders" :key="provider.provider_id"

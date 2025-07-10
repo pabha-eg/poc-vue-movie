@@ -5,8 +5,9 @@ import { useTmdbMovieSections } from '@/composables/useTmdbMovieSections'
 import type { TmdbItem } from '@/types/tmdb'
 import ItemShowcase from '@/components/ItemShowcase.vue'
 import { ref } from 'vue'
+import LoadingIndicator from '@/components/ui/LoadingIndicator.vue'
 
-const { nowPlaying, popular, topRated, upcoming } = useTmdbMovieSections()
+const { nowPlaying, popular, topRated, upcoming, loading } = useTmdbMovieSections()
 const selectedItem = ref<TmdbItem | null>(null)
 
 function showItem(item: TmdbItem) {
@@ -26,6 +27,8 @@ function closeShowcase() {
         <!-- Foreground Content -->
         <div class="relative z-20">
             <main class="px-2 space-y-6">
+                <!-- Loading State -->
+                <LoadingIndicator v-if="loading" />
                 <PosterCarousel :items="nowPlaying" sectionTitle="Now Playing" @item-click="showItem" />
                 <PosterCarousel :items="topRated" sectionTitle="Top Rated" @item-click="showItem" />
                 <PosterCarousel :items="upcoming" sectionTitle="Upcoming" @item-click="showItem" />

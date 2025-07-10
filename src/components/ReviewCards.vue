@@ -6,6 +6,7 @@ import {
     CardFooter,
 } from '@/components/ui/card'
 import { useTrendingReviews } from '@/composables/useTrendingReviews'
+import LoadingIndicator from './ui/LoadingIndicator.vue'
 
 // Use the composable to fetch reviews
 const { reviews, loading, error } = useTrendingReviews()
@@ -13,7 +14,8 @@ const { reviews, loading, error } = useTrendingReviews()
 
 <template>
     <div class="w-full px-4">
-        <div v-if="loading" class="text-muted-foreground">Loading...</div>
+        <!-- Loading State -->
+        <LoadingIndicator v-if="loading" />
         <div v-else-if="error" class="text-destructive">{{ error }}</div>
         <div v-else class="grid grid-cols-2 gap-6">
             <Card v-for="review in reviews" :key="review.id" class="flex overflow-hidden bg-transparent rounded-none">

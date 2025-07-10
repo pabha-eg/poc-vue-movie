@@ -1,13 +1,14 @@
 <script setup lang="ts">
 import { useTrendingArtists } from '@/composables/useTrendingArtists'
-import type { TrendingArtist } from '@/types/tmdb'
+import LoadingIndicator from './ui/LoadingIndicator.vue'
 
 const { artists, loading, error } = useTrendingArtists()
 </script>
 
 <template>
     <div class="w-full px-4">
-        <div v-if="loading" class="text-muted">Loading...</div>
+        <!-- Loading State -->
+        <LoadingIndicator v-if="loading" />
         <div v-else-if="error" class="text-red-500">{{ error }}</div>
 
         <div v-else class="grid grid-cols-3 sm:grid-cols-5 gap-4">
